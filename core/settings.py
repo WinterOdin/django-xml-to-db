@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'gathering',
-    'gather_api'
+    'gather_api',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
