@@ -1,9 +1,15 @@
+
+
 import requests
 import pandas as pd
+from .models import Package
 from requests_html import HTML
+from sqlalchemy import create_engine
+from django.http import HttpResponse
 from requests_html import HTMLSession
 
-def get_source(url: str) -> Response:
+
+def get_source(url: str) -> HttpResponse:
     """Return the source code for the provided URL. 
 
     Args: 
@@ -50,3 +56,10 @@ def get_feed(url: str) -> pd.DataFrame:
             df = df.append(row, ignore_index=True)
 
     return df
+
+def replace_xml(url):
+
+    df = get_feed("https://pypi.org/rss/packages.xml")
+    engine = create_engine('sqlite:///db.sqlite3')
+    print(df)
+    df.to_sql(Package._meta.db_table, if_exists='replace', con=engine, index=False)

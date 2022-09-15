@@ -5,6 +5,9 @@ class Searched(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     entry = models.CharField(max_length=40)
 
+    class Meta:
+        app_label = 'gathering'
+
     def __str__(self):
         return f'{self.entry}'
 
@@ -15,6 +18,10 @@ class Package(models.Model):
     pubDate = models.CharField(max_length=30)
     description = models.CharField(max_length=200)
     author = models.CharField(max_length=30)
+
+    class Meta:
+        app_label = 'gathering'
+
 
     def __str__(self):
         return f'{self.title}'

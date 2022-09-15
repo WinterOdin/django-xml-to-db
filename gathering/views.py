@@ -9,7 +9,7 @@ def main(request):
     form_input = InputForm()
     
     context = {
-        'form_wallet':form_wallet,
+        'form':form_input,
     }
 
     return render(request, 'gathering/index.html', context)
@@ -28,7 +28,7 @@ def package_data(request):
                 Q(link__icontains=searched) |
                 Q(pubDate__icontains=searched) |
                 Q(description__icontains=searched) |
-                Q(author__icontains=searched) |
+                Q(author__icontains=searched)
             )
 
         context = {
