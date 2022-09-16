@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from collections import OrderedDict
 
 class PackagePagination(pagination.PageNumberPagination):
-    page_size = 2
+    page_size = 10
     page_size_query_param = 'limit'
     max_page_size = 50
     page_query_param = 'p'

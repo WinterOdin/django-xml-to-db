@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.auth',
     'django.contrib.sessions',
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
     'django_filters',
 ]
 
-#os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -116,6 +117,13 @@ USE_I18N = True
 
 USE_TZ = True
 
+REST_FRAMEWORK = {
+
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
