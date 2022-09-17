@@ -4,40 +4,29 @@
 <div class="container text-center">
 	<div class="row">
 		<div class="col-12">
-			<h1 class="display-4">Package search.</h1> </div>
-	</div>
-	<div class="row">
-		<div class="row">
-			<div class="col-sm-12 col-md-12">
-				<form id="book-form">
-					<div class="row"> {% csrf_token %}
-						<div class="col-sm-6 col-md-6"> {{form.input}} </div>
-						<div class="col-sm-12 col-md-6">
-							<div class="btn-pos-mobile">
-								<button type="submit" class="btn btn-outline-primary form-btn-pos" id="send-form">Search</button>
-								<button type="button" class="btn btn-outline-danger form-btn-pos" id="clear-form">Clear</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="col-sm-12 col-md-12">
-				<div class="min-spacer">
-				</div>
-			</div>
+			<div class="main-title">Package <span class="custom-color">search</span>.</div> 
 		</div>
 	</div>
-		<div id="loadDiv"> Please wait
-			<div id="floatingBarsG">
-				<div class="blockG" id="rotateG_01"></div>
-				<div class="blockG" id="rotateG_02"></div>
-				<div class="blockG" id="rotateG_03"></div>
-				<div class="blockG" id="rotateG_04"></div>
-				<div class="blockG" id="rotateG_05"></div>
-				<div class="blockG" id="rotateG_06"></div>
-				<div class="blockG" id="rotateG_07"></div>
-				<div class="blockG" id="rotateG_08"></div>
+	<div class="row">
+		
+			<div class="col-sm-12 col-md-12 text-center">
+				<form id="input-form">
+					 {% csrf_token %}
+						
+							{{form.entry}} 
+							
+								<button type="submit" class="btn btn-outline-primary form-btn-pos" id="send-form">Search</button>
+								<button type="button" class="btn btn-outline-danger form-btn-pos" id="clear-form">Clear</button>
+							
+						
+					
+				</form>
 			</div>
+
+		
+	</div>
+		<div id="welcome-note">
+			<div id="welcome-note-text">Enter keyword and search for<span class="custom-color"> newest </span>packages.</div>
 		</div>
 		<div id="content-container">
 			<div class="container-fluid">
@@ -45,10 +34,10 @@
 					<thead>
 						<tr>
 							<th style="width: 20%">Title</th>
-                            <th style="width: 20%">Author</th>
-							<th style="width: 30%">Description</th>
-                            <th style="width: 20%">Link</th>
-                            <th style="width: 10%">pubDate</th>
+                            <th style="width: 15%">Author</th>
+							<th style="width: 35%">Description</th>
+                            <th style="width: 15%">Link</th>
+                            <th style="width: 15%">Date</th>
 						</tr>
 					</thead>
 					<tbody id="table-body"></tbody>
@@ -70,7 +59,8 @@
 		</div>
 	
 </div>
-<script src="{% static 'gathering/js/run_books.js' %}"></script>
 <script src="{% static 'gathering/js/build_pages.js' %}"></script>
+<script src="{% static 'gathering/js/run_pages.js' %}"></script>
+
 <script>runPackage('{% url 'package_url'  %}')</script>
 {% endblock %}

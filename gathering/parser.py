@@ -60,7 +60,7 @@ def get_feed(url: str) -> pd.DataFrame:
 
     return df
 
-def replace_xml(url: str):
+def replace_xml(url: str) -> None:
     """Saves a Pandas dataframe to db.
 
     Args: 

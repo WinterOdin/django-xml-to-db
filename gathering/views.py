@@ -6,10 +6,10 @@ from .forms import InputForm
 
 
 def main(request):
-    form_input = InputForm()
+    form = InputForm()
     
     context = {
-        'form':form_input,
+        'form':form,
     }
 
     return render(request, 'gathering/index.html', context)
@@ -22,18 +22,14 @@ def package_data(request):
 
         if form.is_valid():
             form.save()
-            searched = form['entry']
+            searched = form['entry'].value()
+
             available_data = Package.objects.filter(
                 Q(title__icontains=searched) | 
                 Q(link__icontains=searched) |
                 Q(pubDate__icontains=searched) |
                 Q(description__icontains=searched) |
                 Q(author__icontains=searched)
-            )
+            ).values()
 
-        context = {
-            'available_data':available_data
-        }
-
-        return JsonResponse(context)
-
+        return JsonResponse({'available_data': list(available_data)})

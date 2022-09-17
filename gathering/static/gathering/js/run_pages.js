@@ -1,3 +1,4 @@
+
 function runPackage(url_data) {
 
 	function convertToCSV(arr) {
@@ -8,10 +9,10 @@ function runPackage(url_data) {
 	}
 
 	$("#clear-form").on("click", function() {
-		$('#id_input').val('');
+		$('#id_entry').val('');
 	});
 
-	$("#book-form").submit(function(e) {
+	$("#input-form").submit(function(e) {
 		e.preventDefault();
 		var serializedData = $(this).serialize();
 
@@ -23,18 +24,15 @@ function runPackage(url_data) {
 			},
 			data: serializedData,
 			success: function(response) {
-				var tableData = response['book_data'];
-				var author_data = response['author_data']['docs'][0];
-
-				$("#author-name").text(author_data['name']);
-				$("#author-birth").text(author_data['birth_date']);
-				$("#author-top").text(author_data['top_work']);
+				var tableData = response['available_data'];
 
 				build(tableData)
-
+				
 				$('#download_csv').show();
+
+
 				$('#download_csv').on("click", function() {
-					var data = convertToCSV(response['book_data']);
+					var data = convertToCSV(response['available_data']);
 					var uri = 'Data:text/csv;charset=utf-8,' + escape(data);
 					var link = document.createElement("a");
 					link.href = uri;
@@ -45,29 +43,28 @@ function runPackage(url_data) {
 					document.body.removeChild(link);
 				});
 
-				$("#loadDiv").fadeOut('fast');
+				$('#welcome-note').fadeOut('fast');
 				setTimeout(function() {
-					$('#content-container, #pagination-wrapper').fadeIn('fast');
-					$('#download_csv, .author-data').fadeIn('slow');
-				}, 800);
+					$('#content-container').fadeIn('fast');
+					$('#pagination-wrapper').fadeIn('fast');
+					$('#download_csv').fadeIn('slow');
+
+				}, 200);
 			},
 			error: function(response) {
-				console.log("blad")
-				$("#loadDiv").hide();
-				$('#table-body, #pagination-wrapper').empty();
-				$('#myModal').modal('show'); 
+				console.log(response)
 			}
 		})
 	})
 
+
 	$(document).ajaxStart(function() {
-		
-		$('#download_csv, .author-data').fadeOut('slow');
-		$('#content-container, #pagination-wrapper').fadeOut(100, function() {
+
+		$('#download_csv').fadeOut('slow');
+		//not $('#content-container, #pagination-wrapper') because it changing in wrong way
+		$('#content-container').fadeOut(100, function() {
 			$('#table-body, #pagination-wrapper').empty();
 		});
-		setTimeout(function(){
-			$("#loadDiv").fadeIn('fast');
-		}, 800);
+
 	});
 }
