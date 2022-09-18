@@ -24,14 +24,13 @@ SECRET_KEY = 'django-insecure-)bi&2nc9x)92caj%51i=b++h8f&wdjqjli1ft3s357y*sy!(&w
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+ADMIN_ENABLED = False
 ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.auth',
     'django.contrib.sessions',
@@ -41,9 +40,11 @@ INSTALLED_APPS = [
     'gather_api',
     'rest_framework',
     'django_filters',
+    'drf_yasg',
 ]
 
-
+if ADMIN_ENABLED is True:
+    INSTALLED_APPS.append('django.contrib.admin')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

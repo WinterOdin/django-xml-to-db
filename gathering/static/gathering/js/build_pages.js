@@ -73,7 +73,8 @@ function build(data) {
                 <td>${myList[i]['author']}</td>
                 <td>${myList[i]['description']}</td>
                 <td>${myList[i]['link']}</td>
-                <td>${myList[i]['pubDate']}</td>
+				<td>${myList[i]['keywords']}</td>
+                <td>${myList[i]['version']}</td>
                 `
             table.insertAdjacentHTML('beforeend', row);
             

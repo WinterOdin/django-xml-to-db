@@ -4,12 +4,10 @@ from django import forms
 
 
 class InputForm(ModelForm):
-
     class Meta:
-
         model = Searched
         fields = ('entry',)
         widgets = {
             'entry': forms.TextInput(attrs={'class': 'form-control',
-                'placeholder': 'Search for package'
-            })}
+                                            'placeholder': 'Search for package'
+                                            })}
