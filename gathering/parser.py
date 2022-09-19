@@ -45,9 +45,9 @@ def get_details(package_name: str) -> dict:
 
         data = json.loads(response.text)
         context = {
-            'name': data['info']['author'],
-            'version': data['info']['version'],
-            'keywords': data['info']['keywords'],
+            'name': data['info']['author'] or 'No name found',
+            'version': data['info']['version'] or 'No version found',
+            'keywords': data['info']['keywords'] or 'No keywords found',
         }
     else:
 
@@ -85,9 +85,9 @@ def get_feed(url: str) -> pd.DataFrame:
             author = data['name']
             version = data['version']
             keywords = data['keywords']
-
             try:
-                email = item.find('email', first=True).text
+                #
+                email = item.find('author', first=True).text
             except AttributeError:
                 email = 'No email'
 

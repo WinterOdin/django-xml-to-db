@@ -77,7 +77,6 @@ function build(data) {
                 <td>${myList[i]['version']}</td>
                 `
             table.insertAdjacentHTML('beforeend', row);
-            
 		}
         
 		pageButtons(data.pages);

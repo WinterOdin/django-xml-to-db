@@ -59,9 +59,8 @@ function runPackage(url_data) {
 
 
 	$(document).ajaxStart(function() {
-
 		$('#download_csv').fadeOut('slow');
-		//not $('#content-container, #pagination-wrapper') because it changing in wrong way
+		
 		$('#content-container').fadeOut(100, function() {
 			$('#table-body, #pagination-wrapper').empty();
 		});
